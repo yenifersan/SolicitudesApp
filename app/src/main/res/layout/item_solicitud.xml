@@ -57,6 +57,8 @@
         android:layout_alignParentEnd="true"
         android:background="@null"/>
 
+
+
         <TextView
             android:id="@+id/motivo_text"
             android:layout_width="280dp"
