@@ -13,10 +13,10 @@
         android:layout_margin="16dp"
         android:layout_marginBottom="16dp"
         android:text="correo"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
     <EditText
-        android:id="@+id/nombre_input"
+        android:id="@+id/correo_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -34,12 +34,16 @@
         android:text="tipo"
         android:textSize="20sp" />
 
-    <Spinner
-        android:id="@+id/spinner"
+    <EditText
+        android:id="@+id/tipo_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="16dp"
+        android:inputType="text"
+        android:maxLength="100"
+        android:maxLines="1" />
 
     <TextView
         android:layout_width="match_parent"
@@ -50,7 +54,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/detalles_input"
+        android:id="@+id/motivo_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

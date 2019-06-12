@@ -20,6 +20,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.santiago.solicitudesapp.R;
+import com.santiago.solicitudesapp.models.ResponseMessage;
+import com.santiago.solicitudesapp.service.ApiService;
+import com.santiago.solicitudesapp.service.ApiServiceGenerator;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -38,9 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     private ImageView imagePreview;
 
-    private EditText nombreInput;
-    private EditText precioInput;
-    private EditText detallesInput;
+    private EditText correoInput;
+    private EditText tipoInput;
+    private EditText motivoInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +56,9 @@ public class RegisterActivity extends AppCompatActivity {
         StrictMode.setVmPolicy(builder.build());
 
         imagePreview = findViewById(R.id.imagen_preview);
-        nombreInput = findViewById(R.id.nombre_input);
-        precioInput = findViewById(R.id.precio_input);
-        detallesInput = findViewById(R.id.detalles_input);
+        correoInput = findViewById(R.id.correo_input);
+        tipoInput = findViewById(R.id.tipo_input);
+        motivoInput = findViewById(R.id.motivo_input);
     }
 
     /**
@@ -125,11 +130,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void callRegister(View view) {
 
-        String nombre = nombreInput.getText().toString();
-        String precio = precioInput.getText().toString();
-        String detalles = detallesInput.getText().toString();
+        String correo = correoInput.getText().toString();
+        String tipo = tipoInput.getText().toString();
+        String motivo = motivoInput.getText().toString();
 
-        if (nombre.isEmpty() || precio.isEmpty()) {
+        if (correo.isEmpty() || tipo.isEmpty()) {
             Toast.makeText(this, "Nombre y Precio son campos requeridos", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -140,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (mediaFileUri == null) {
             // Si no se incluye imagen hacemos un envío POST simple
-            call = service.createProducto(nombre, precio, detalles);
+            call = service.createProducto(correo, tipo, motivo);
         } else {
             // Si se incluye hacemos envió en multiparts
 
@@ -162,11 +167,11 @@ public class RegisterActivity extends AppCompatActivity {
             RequestBody requestFile = RequestBody.create(MediaType.parse("image/jpeg"), byteArray);
             MultipartBody.Part imagenPart = MultipartBody.Part.createFormData("imagen", file.getName(), requestFile);
 
-            RequestBody nombrePart = RequestBody.create(MultipartBody.FORM, nombre);
-            RequestBody precioPart = RequestBody.create(MultipartBody.FORM, precio);
-            RequestBody detallesPart = RequestBody.create(MultipartBody.FORM, detalles);
+            RequestBody correoPart = RequestBody.create(MultipartBody.FORM, correo);
+            RequestBody tipoPart = RequestBody.create(MultipartBody.FORM, tipo);
+            RequestBody motivoPart = RequestBody.create(MultipartBody.FORM, motivo);
 
-            call = service.createProductoWithImage(nombrePart, precioPart, detallesPart, imagenPart);
+            call = service.createSolicitudWithImage(correoPart, tipoPart, motivoPart, imagenPart);
         }
 
         call.enqueue(new Callback<ResponseMessage>() {
