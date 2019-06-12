@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.santiago.solicitudesapp.models.Solicitud;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,24 +23,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.ViewHolder> {
+public class SolicitudesAdapter extends RecyclerView.Adapter<SolicitudesAdapter.ViewHolder> {
 
-    private List<Producto> productos;
-    private static final String TAG = ProductosAdapter.class.getSimpleName();
+    private List<Solicitud> solicitudes;
+    private static final String TAG = SolicitudesAdapter.class.getSimpleName();
 
-    public ProductosAdapter(){
-        this.productos = new ArrayList<>();
+    public SolicitudesAdapter(){
+        this.solicitudes = new ArrayList<>();
     }
 
-    public void setProductos(List<Producto> productos){
-        this.productos = productos;
+    public void setProductos(List<Solicitud> productos){
+        this.solicitudes = productos;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView fotoImage;
-        public TextView nombreText;
-        public TextView precioText;
+        public TextView correoText;
+        public TextView tipoText;
+        public TextView motivoText;
         public ImageButton menuButton;
 
         public ViewHolder(View itemView) {

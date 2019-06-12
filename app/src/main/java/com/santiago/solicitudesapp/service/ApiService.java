@@ -1,6 +1,9 @@
 package com.santiago.solicitudesapp.service;
 
 
+import com.santiago.solicitudesapp.models.ResponseMessage;
+import com.santiago.solicitudesapp.models.Solicitud;
+
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -21,20 +24,20 @@ public interface ApiService {
     String API_BASE_URL = "http://192.168.137.1:9092";
 
     @GET("/productos")
-    Call<List<Producto>> getProductos();
+    Call<List<Solicitud>> getSolicitudes();
 
 
     @FormUrlEncoded
-    @POST("/productos")
-    Call<ResponseMessage> createProducto(@Field("nombre") String nombre,
-                                         @Field("precio") String precio,
-                                         @Field("detalles") String detalles);
+    @POST("/solicitudes")
+    Call<ResponseMessage> createProducto(@Field("correo") String nombre,
+                                         @Field("tipo") String precio,
+                                         @Field("motivo") String detalles);
     @Multipart
-    @POST("/productos")
-    Call<ResponseMessage> createProductoWithImage(
-            @Part("nombre") RequestBody nombre,
-            @Part("precio") RequestBody precio,
-            @Part("detalles") RequestBody detalles,
+    @POST("/solicitudes")
+    Call<ResponseMessage> createSolicitudWithImage(
+            @Part("correo") RequestBody correo,
+            @Part("tipo") RequestBody tipo,
+            @Part("motivo") RequestBody motivo,
             @Part MultipartBody.Part imagen
     );
 
