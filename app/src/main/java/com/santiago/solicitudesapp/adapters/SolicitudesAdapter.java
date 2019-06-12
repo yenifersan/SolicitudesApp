@@ -47,8 +47,9 @@ public class SolicitudesAdapter extends RecyclerView.Adapter<SolicitudesAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
             fotoImage = itemView.findViewById(R.id.foto_image);
-            nombreText = itemView.findViewById(R.id.nombre_text);
-            precioText = itemView.findViewById(R.id.precio_text);
+            correoText = itemView.findViewById(R.id.correo_text);
+            tipoText = itemView.findViewById(R.id.tipo_text);
+            motivoText = itemView.findViewById(R.id.motivo_text);
             menuButton = (ImageButton) itemView.findViewById(R.id.menu_button);
         }
     }
@@ -63,7 +64,7 @@ public class SolicitudesAdapter extends RecyclerView.Adapter<SolicitudesAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
 
-        final Producto producto = this.productos.get(position);
+        final Solicitud producto = this.solicitudes.get(position);
 
         viewHolder.nombreText.setText(producto.getNombre());
         viewHolder.precioText.setText("S/. " + producto.getPrecio());
