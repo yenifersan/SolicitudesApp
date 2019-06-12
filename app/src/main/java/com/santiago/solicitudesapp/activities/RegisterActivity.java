@@ -145,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (mediaFileUri == null) {
             // Si no se incluye imagen hacemos un envío POST simple
-            call = service.createProducto(correo, tipo,motivo);
+            call = service.createSolicitud(correo, tipo,motivo);
         } else {
             // Si se incluye hacemos envió en multiparts
 

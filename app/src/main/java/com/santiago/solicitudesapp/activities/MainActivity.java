@@ -21,7 +21,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -73,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         Log.e(TAG, "onThrowable: " + t.toString(), t);
                         Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }catch (Throwable x){}
+                    } catch (Throwable x) {
+                    }
                 }
             }
 
@@ -88,18 +88,15 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REGISTER_FORM_REQUEST = 100;
 
-    public void showRegister(View view){
+    public void showRegister(View view) {
         startActivityForResult(new Intent(this, RegisterActivity.class), REGISTER_FORM_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == REGISTER_FORM_REQUEST) {
+        if (requestCode == REGISTER_FORM_REQUEST) {
             // refresh data
             initialize();
         }
     }
-
-
 }
-

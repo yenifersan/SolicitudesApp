@@ -20,7 +20,8 @@ import retrofit2.http.Path;
 
 public interface ApiService {
 
-    String API_BASE_URL = "http://192.168.137.1:9092";
+    String API_BASE_URL = "http://192.168.137.1:8081";
+    //String API_BASE_URL = "http://10.200.171.149:8081";
 
     @GET("/solicitudes")
     Call<List<Solicitud>> getSolicitudes();
@@ -28,7 +29,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("/solicitudes")
-    Call<ResponseMessage> createProducto(@Field("correo") String correo,
+    Call<ResponseMessage> createSolicitud(@Field("correo") String correo,
                                          @Field("tipo") String tipo,
                                          @Field("motivo") String motivo);
     @Multipart

@@ -25,6 +25,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SolicitudesAdapter extends RecyclerView.Adapter<SolicitudesAdapter.ViewHolder> {
 
     private static final String TAG = SolicitudesAdapter.class.getSimpleName();
@@ -45,14 +49,13 @@ public class SolicitudesAdapter extends RecyclerView.Adapter<SolicitudesAdapter.
         public TextView correoText;
         public TextView tipoText;
         public TextView motivoText;
-        public ImageButton menuButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
             fotoImage = itemView.findViewById(R.id.foto_image);
             correoText = itemView.findViewById(R.id.correo_text);
             tipoText = itemView.findViewById(R.id.tipo_text);
-            menuButton = (ImageButton) itemView.findViewById(R.id.menu_button);
+            motivoText = itemView.findViewById(R.id.motivo_text);
         }
     }
 
@@ -64,17 +67,16 @@ public class SolicitudesAdapter extends RecyclerView.Adapter<SolicitudesAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder,  int position) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
 
         final Solicitud solicitud = this.solicitudes.get(position);
 
         viewHolder.correoText.setText(solicitud.getCorreo());
         viewHolder.tipoText.setText(solicitud.getTipo());
         viewHolder.motivoText.setText(solicitud.getMotivo());
+
         String url = ApiService.API_BASE_URL + "/solicitudes/images/" + solicitud.getImagen();
         Picasso.with(viewHolder.itemView.getContext()).load(url).into(viewHolder.fotoImage);
-
-
 
     }
 
